@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import aidsmoLogo from '../assets/aidsmo logo sans bg 800x 800.png'
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -45,7 +46,7 @@ export default function Menu() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-600">
             
-            {/* À DROITE : Barre de Recherche (déplacée ici pour équilibrer) */}
+            {/* À DROITE : Barre de Recherche */}
             <div className="hidden md:flex justify-start flex-1 max-w-xs">
               <div className="flex w-full rounded-lg overflow-hidden shadow-sm border border-gray-300 bg-white">
                 <input
@@ -62,7 +63,6 @@ export default function Menu() {
             {/* À GAUCHE : Infos, Réseaux, Langue ET Login */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 justify-center md:justify-center md:flex-1">
               
-              {/* 1. Infos de contact & Adresse (masqué sur petits écrans) */}
               <div className="flex flex-col xl:flex-row gap-3 xl:gap-5 items-center hidden lg:flex">
                 <span className="flex items-center gap-2">
                   <i className="pi pi-map-marker text-[#0F2982]"></i>
@@ -74,7 +74,6 @@ export default function Menu() {
                 </span>
               </div>
 
-              {/* 2. Réseaux Sociaux */}
               <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6 hidden md:flex">
                 <a href="#" className="hover:text-[#0F2982] transition-colors"><i className="pi pi-facebook text-base"></i></a>
                 <a href="#" className="hover:text-pink-600 transition-colors"><i className="pi pi-instagram text-base"></i></a>
@@ -82,24 +81,21 @@ export default function Menu() {
                 <a href="#" className="hover:text-gray-900 transition-colors"><i className="pi pi-twitter text-base"></i></a>
               </div>
 
-              {/* 3. Sélecteur de Langue & Login (Extrême Gauche) */}
               <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6">
                 <button 
                   onClick={toggleLanguage}
-                  className="cursor-pointer  text-[#0F2982] font-bold px-2 py-1 rounded-lg text-sm transition-all flex items-center gap-1.5 hover:text-[#0a2268] hover:bg-[#0F2982]/5 active:scale-95"
+                  className="cursor-pointer text-[#0F2982] font-bold px-2 py-1 rounded-lg text-sm transition-all flex items-center gap-1.5 hover:text-[#0a2268] hover:bg-[#0F2982]/5 active:scale-95"
                 >
                   <i className="pi pi-globe text-xs "></i>
                   <span>{currentLang === 'AR' ? 'FR' : 'AR'}</span>
                 </button>
-  </div>
-               
-            
-                             <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6">
-
+              </div>
+                
+              <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6">
                 <button className="cursor-pointer text-[#0F2982] hover:text-[#0a2268] hover:scale-110 transition-transform flex items-center justify-center p-1">
                   <i className="pi pi-user text-xl"></i>
                 </button>
-  </div>
+              </div>
             </div>
           </div>
         </div>
@@ -109,7 +105,8 @@ export default function Menu() {
       <nav className="bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            
+            {/* 1er Logo (À droite à cause du dir="rtl") */}
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center gap-2">
                 <img
@@ -120,7 +117,7 @@ export default function Menu() {
               </Link>
             </div>
 
-            {/* Desktop Menu */}
+            {/* Desktop Menu (Au centre) */}
             <div className="hidden lg:flex items-center flex-1 justify-center gap-1 px-4">
               {items.map((item, index) => {
                 const parentActive = isParentActive(item.subItems);
@@ -178,14 +175,28 @@ export default function Menu() {
               })}
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden flex-shrink-0">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="cursor-pointer inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0F2982] hover:bg-gray-100 focus:outline-none transition-colors"
-              >
-                <i className={`pi ${isOpen ? 'pi-times' : 'pi-bars'} text-xl`}></i>
-              </button>
+            {/* PARTIE GAUCHE : 2ème Logo + Mobile Menu Button */}
+            <div className="flex items-center gap-4 flex-shrink-0">
+              
+              {/* 2ème Logo (À l'extrême gauche) */}
+              <a href="https://aidsmo.org/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <img
+                  src={aidsmoLogo}
+                  alt="Aidsmo"
+                  className="h-10 md:h-12 w-auto"
+                />
+              </a>
+
+              {/* Mobile Menu Button */}
+              <div className="lg:hidden">
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="cursor-pointer inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0F2982] hover:bg-gray-100 focus:outline-none transition-colors"
+                >
+                  <i className={`pi ${isOpen ? 'pi-times' : 'pi-bars'} text-xl`}></i>
+                </button>
+              </div>
+
             </div>
           </div>
 
