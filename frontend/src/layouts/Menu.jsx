@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom' // <-- Import de useLocation
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentLang, setCurrentLang] = useState('AR')
-  const location = useLocation() // <-- Récupération du chemin actuel
+  const location = useLocation()
 
   const items = [
     { label: 'الرئيسية', link: '/' },
     {
       label: 'عن الأراميت',
       subItems: [
-        { label: 'من نحن', link: '/about/who-we-are' }, // J'ai mis des faux liens pour l'exemple
+        { label: 'من نحن', link: '/about/who-we-are' },
         { label: 'الأهداف', link: '/about/goals' },
         { label: 'الهيكل التنظيمي', link: '/about/structure' },
         { label: 'الدول الأعضاء', link: '/about/members' }
@@ -35,29 +35,18 @@ export default function Menu() {
     setCurrentLang(prev => (prev === 'AR' ? 'FR' : 'AR'))
   }
 
-  // --- Fonctions de vérification du lien actif ---
   const isActive = (path) => location.pathname === path
   const isParentActive = (subItems) => subItems?.some(sub => isActive(sub.link))
 
   return (
     <div className="w-full font-sans" dir="rtl">
-      {/* Top Bar (inchangé) */}
+      {/* Top Bar */}
       <div className="w-full bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-600">
-            {/* À DROITE : Sélecteur de Langue */}
-            <div className="flex items-center gap-2 justify-center md:justify-start flex-shrink-0">
-              <button 
-                onClick={toggleLanguage}
-                className="cursor-pointer text-[#0F2982] font-bold px-2 py-1 rounded-lg text-sm transition-all flex items-center gap-1.5 hover:text-[#0F2982] active:scale-95"
-              >
-                <i className="pi pi-globe text-xs"></i>
-                <span>{currentLang === 'AR' ? 'FR' : 'AR'}</span>
-              </button>
-            </div>
-
-            {/* AU CENTRE : Barre de Recherche */}
-            <div className="hidden md:flex justify-center flex-1 max-w-xs mx-4">
+            
+            {/* À DROITE : Barre de Recherche (déplacée ici pour équilibrer) */}
+            <div className="hidden md:flex justify-start flex-1 max-w-xs">
               <div className="flex w-full rounded-lg overflow-hidden shadow-sm border border-gray-300 bg-white">
                 <input
                   type="text"
@@ -70,24 +59,47 @@ export default function Menu() {
               </div>
             </div>
 
-            {/* À GAUCHE : Réseaux Sociaux et Infos */}
-            <div className="flex flex-wrap items-center gap-6 justify-center md:justify-end md:flex-1">
-              <div className="flex items-center gap-4 border-l border-gray-300 pl-4">
-                <a href="#" className="hover:text-[#0F2982] transition-colors"><i className="pi pi-facebook text-base"></i></a>
-                <a href="#" className="hover:text-pink-600 transition-colors"><i className="pi pi-instagram text-base"></i></a>
-                <a href="#" className="hover:text-[#0F2982] transition-colors"><i className="pi pi-linkedin text-base"></i></a>
-                <a href="#" className="hover:text-gray-900 transition-colors"><i className="pi pi-twitter text-base"></i></a>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-5 items-center">
-                <span className="flex items-center gap-2 text-center sm:text-right">
+            {/* À GAUCHE : Infos, Réseaux, Langue ET Login */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 justify-center md:justify-center md:flex-1">
+              
+              {/* 1. Infos de contact & Adresse (masqué sur petits écrans) */}
+              <div className="flex flex-col xl:flex-row gap-3 xl:gap-5 items-center hidden lg:flex">
+                <span className="flex items-center gap-2">
                   <i className="pi pi-map-marker text-[#0F2982]"></i>
-                  <span>شارع فرنسا، الرباط - أكدال، المملكة المغربية</span>
+                  <span>شارع فرنسا، الرباط - أكدال</span>
                 </span>
                 <span className="flex items-center gap-2">
                   <i className="pi pi-envelope text-[#0F2982]"></i>
                   <span>info@aramet.com</span>
                 </span>
               </div>
+
+              {/* 2. Réseaux Sociaux */}
+              <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6 hidden md:flex">
+                <a href="#" className="hover:text-[#0F2982] transition-colors"><i className="pi pi-facebook text-base"></i></a>
+                <a href="#" className="hover:text-pink-600 transition-colors"><i className="pi pi-instagram text-base"></i></a>
+                <a href="#" className="hover:text-[#0F2982] transition-colors"><i className="pi pi-linkedin text-base"></i></a>
+                <a href="#" className="hover:text-gray-900 transition-colors"><i className="pi pi-twitter text-base"></i></a>
+              </div>
+
+              {/* 3. Sélecteur de Langue & Login (Extrême Gauche) */}
+              <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6">
+                <button 
+                  onClick={toggleLanguage}
+                  className="cursor-pointer  text-[#0F2982] font-bold px-2 py-1 rounded-lg text-sm transition-all flex items-center gap-1.5 hover:text-[#0a2268] hover:bg-[#0F2982]/5 active:scale-95"
+                >
+                  <i className="pi pi-globe text-xs "></i>
+                  <span>{currentLang === 'AR' ? 'FR' : 'AR'}</span>
+                </button>
+  </div>
+               
+            
+                             <div className="flex items-center gap-4 border-r border-gray-300 pr-4 sm:pr-6">
+
+                <button className="cursor-pointer text-[#0F2982] hover:text-[#0a2268] hover:scale-110 transition-transform flex items-center justify-center p-1">
+                  <i className="pi pi-user text-xl"></i>
+                </button>
+  </div>
             </div>
           </div>
         </div>
@@ -166,15 +178,8 @@ export default function Menu() {
               })}
             </div>
 
-            {/* Login Button Desktop */}
-            <div className="hidden lg:block flex-shrink-0">
-              <button className="cursor-pointer text-gray-700 hover:text-[#0F2982] hover:font-bold p-2 rounded-lg transition-colors flex items-center justify-center active:scale-95">
-                <i className="pi pi-user text-xl"></i>
-              </button>
-            </div>
-
             {/* Mobile Menu Button */}
-            <div className="lg:hidden">
+            <div className="lg:hidden flex-shrink-0">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="cursor-pointer inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0F2982] hover:bg-gray-100 focus:outline-none transition-colors"
@@ -233,11 +238,6 @@ export default function Menu() {
                   </div>
                 );
               })}
-              <div className="pt-4 border-t border-gray-100">
-                <button className="cursor-pointer w-full text-gray-700 hover:text-[#0F2982] hover:font-bold hover:bg-gray-50 py-2.5 rounded-lg flex items-center justify-center transition-all">
-                  <i className="pi pi-user text-xl"></i>
-                </button>
-              </div>
             </div>
           )}
         </div>
