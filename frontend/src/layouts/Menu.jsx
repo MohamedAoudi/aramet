@@ -26,7 +26,6 @@ export default function Menu() {
     { label: 'البرامج', link: '#' },
     { label: 'الجودة والمقارنات', link: '#' },
     { label: 'الاجتماعات والفعاليات', link: '#' },
-    { label: 'مركز المعرفة', link: '#' },
     { label: 'الأخبار', link: '#' },
     { label: 'اتصل بنا', link: '#' }
   ]
