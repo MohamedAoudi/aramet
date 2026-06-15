@@ -115,23 +115,30 @@ export default function Menu() {
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center flex-1 justify-center gap-1 px-4">
               {items.map((item, index) => (
-                <div key={index} className="relative group">
+                <div key={index} className="relative group/menu">
                   {item.subItems ? (
                     <>
-                      <button className="cursor-pointer flex items-center gap-1 px-3 py-2 text-gray-700 hover:text-[#0F2982] hover:font-bold font-medium text-sm rounded-md hover:bg-gray-50 transition-all">
-                        <span>{item.label}</span>
-                        <i className="pi pi-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                      <button className="cursor-pointer group/btn flex items-center gap-1.5 px-3 py-2 text-gray-700 hover:text-[#0F2982] font-medium text-sm rounded-md hover:bg-gray-50 transition-colors">
+                        <span className="group-hover/btn:font-bold">{item.label}</span>
+ <i
+  className="pi pi-chevron-down text-[10px] scale-75 origin-center leading-none shrink-0 transition-transform duration-200 group-hover/menu:rotate-180"
+  aria-hidden="true"
+></i>
                       </button>
                       
-                      <div className="absolute right-0 top-full pt-2 w-56 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                      <div className="absolute right-0 top-full pt-2 w-56 invisible opacity-0 group-hover/menu:visible group-hover/menu:opacity-100 transition-all duration-200">
                         <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
                           {item.subItems.map((sub, sIdx) => (
                             <a
                               key={sIdx}
                               href={sub.link}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0F2982]/10 hover:text-[#0F2982] hover:font-bold transition-colors"
+                              className="group/sub flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-[#0F2982]/10 hover:text-[#0F2982] transition-colors"
                             >
-                              {sub.label}
+                              <i
+                                className="pi pi-angle-left text-[10px] leading-none shrink-0 font-normal text-[#0F2982] opacity-60 group-hover/sub:opacity-100"
+                                aria-hidden="true"
+                              ></i>
+                              <span className="group-hover/sub:font-bold">{sub.label}</span>
                             </a>
                           ))}
                         </div>
@@ -174,17 +181,22 @@ export default function Menu() {
                 <div key={index}>
                   {item.subItems ? (
                     <div className="space-y-1">
-                      <div className="font-bold text-gray-900 px-3 py-2 text-sm">
-                        {item.label}
+                      <div className="flex items-center justify-between font-bold text-gray-900 px-3 py-2 text-sm">
+                        <span>{item.label}</span>
+                        <i className="pi pi-chevron-down text-[10px] leading-none shrink-0 font-normal text-[#0F2982]" aria-hidden="true"></i>
                       </div>
                       <div className="space-y-1 pr-4">
                         {item.subItems.map((sub, sIdx) => (
                           <a
                             key={sIdx}
                             href={sub.link}
-                            className="block px-3 py-2 text-sm text-gray-600 hover:text-[#0F2982] hover:font-bold hover:bg-gray-50 rounded transition-colors"
+                            className="group/sub flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-[#0F2982] hover:bg-gray-50 rounded transition-colors"
                           >
-                            {sub.label}
+                            <i
+                              className="pi pi-angle-left text-[10px] leading-none shrink-0 font-normal text-[#0F2982] opacity-60 group-hover/sub:opacity-100"
+                              aria-hidden="true"
+                            ></i>
+                            <span className="group-hover/sub:font-bold">{sub.label}</span>
                           </a>
                         ))}
                       </div>
