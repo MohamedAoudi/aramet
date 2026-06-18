@@ -112,7 +112,7 @@ export default function Menu() {
                 <img
                   src="/aramet_logo.png"
                   alt="Aramet"
-                  className="h-20 w-auto"
+                  className="h-20 md:h-20 w-auto"
                 />
               </Link>
             </div>
@@ -183,7 +183,7 @@ export default function Menu() {
                 <img
                   src={aidsmoLogo}
                   alt="Aidsmo"
-                  className="h-10 md:h-12 w-auto"
+                  className="h-14 md:h-16 w-auto"
                 />
               </a>
 
