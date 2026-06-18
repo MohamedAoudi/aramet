@@ -1,9 +1,8 @@
 import React from 'react';
 import ArametFooterLogo from '../assets/Aramet-footer-logo.png';
-// الرجاء إضافة مسار الشعار الثاني هنا
 import SecondLogo from '../assets/logo-aidsmo white.svg'; 
 
-function Footer() {
+function Footer({ currentLang = 'AR', toggleLanguage }) {
     return (
         <footer className="relative w-full bg-[#0f1a30] text-slate-300 font-['Cairo',_sans-serif] pt-[50px] md:pt-[80px]" dir="rtl">
             
@@ -123,7 +122,7 @@ function Footer() {
                     </div>
                 </div>
 
-                {/* العمود الرابع: الشعار الثاني (اليسار) - بدون أي إضافات */}
+                {/* العمود الرابع: الشعار الثاني (اليسار) */}
                 <div className="lg:col-span-1 flex items-center justify-start lg:justify-center pt-8 lg:pt-0">
                     <img 
                         src={SecondLogo} 
@@ -134,17 +133,35 @@ function Footer() {
 
             </div>
 
+            {/* الشريط السفلي - مقسم إلى 3 أعمدة للتوسيط الدقيق */}
             <div className="border-t border-slate-800 bg-[#0b1325]/60 text-xs text-slate-500 py-6">
-                <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-right">
-                    <div className="space-y-1">
+                <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center">
+                    
+                    {/* حقوق النشر (اليمين) */}
+                    <div className="space-y-1 md:text-right">
                         <p className="text-slate-400 font-medium">المنظمة العربية للتنمية الصناعية والتقييس والتعدين</p>
                         <p>جميع الحقوق محفوظة © 2026 - ARAMET.</p>
                     </div>
-                    <div className="flex gap-4">
+                    
+                    {/* زر تغيير اللغة (موسط تماماً) */}
+                    <div className="flex justify-center">
+                        <button 
+                            onClick={toggleLanguage}
+                            className="cursor-pointer text-slate-300 font-bold px-3 py-1.5 rounded-lg text-sm transition-all flex items-center gap-1.5 border border-slate-700/50 hover:border-slate-600 hover:text-white hover:bg-slate-800/50 active:scale-95"
+                            dir="ltr"
+                        >
+                            <i className="pi pi-globe text-xs"></i>
+                            <span>{currentLang === 'AR' ? 'FR' : 'AR'}</span>
+                        </button>
+                    </div>
+                    
+                    {/* الروابط (اليسار) */}
+                    <div className="flex gap-4 justify-center md:justify-end">
                         <a href="#" className="hover:text-white transition-colors">شروط الاستخدام</a>
                         <span className="text-slate-700">|</span>
                         <a href="#" className="hover:text-white transition-colors">سياسة الخصوصية</a>
                     </div>
+
                 </div>
             </div>
         </footer>
