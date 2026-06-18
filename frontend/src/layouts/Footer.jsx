@@ -1,12 +1,13 @@
 import React from 'react';
 import ArametFooterLogo from '../assets/Aramet-footer-logo.png';
+// الرجاء إضافة مسار الشعار الثاني هنا
+import SecondLogo from '../assets/logo-aidsmo white.svg'; 
 
 function Footer() {
     return (
-        // إضافة relative و padding من الأعلى (pt) لتوفير مساحة للأمواج
         <footer className="relative w-full bg-[#0f1a30] text-slate-300 font-['Cairo',_sans-serif] pt-[50px] md:pt-[80px]" dir="rtl">
             
-            {/* الأمواج المثبتة في أعلى القسم مقلوبة بـ rotate-180 لتبدو كأنها تنزل من القسم الأبيض بالأعلى */}
+            {/* الأمواج العلوية */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-30 pointer-events-none rotate-180">
                 <svg 
                     viewBox="0 0 1200 120" 
@@ -25,6 +26,7 @@ function Footer() {
                 </svg>
             </div>
 
+            {/* شريط معلومات الاتصال */}
             <div className="border-b border-slate-700/50 bg-[#0b1325]">
                 <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-right">
                     <div className="flex items-center justify-center md:justify-start gap-3">
@@ -66,19 +68,20 @@ function Footer() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="space-y-4">
+            {/* المحتوى الرئيسي للفوتر */}
+            <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
+                
+                {/* العمود الأول: الشعار الأول والنص (اليمين) */}
+                <div className="space-y-4 lg:col-span-1">
                     <div className="mb-2">
-                        <img src={ArametFooterLogo} alt="Logo ARAMET" className="h-16 w-auto object-contain"/>
+                        <img src={ArametFooterLogo} alt="Logo ARAMET" className="h-20 w-auto object-contain"/>
                     </div>
-                    <h3 className="text-lg font-bold text-white relative pb-3 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-12 after:h-0.5 after:bg-emerald-500">
-                    </h3>
-                    
                     <p className="text-sm leading-relaxed text-slate-400 text-justify">
                         التجمع العربي للمترولوجيا هو نظام إقليمي متخصص للجهات الرسمية في الدول العربية العاملة في مجال المترولوجيا القانونية والعلمية والصناعية.
                     </p>
                 </div>
 
+                {/* العمود الثاني والثالث: الروابط (الوسط) */}
                 <div className="lg:col-span-2 space-y-4">
                     <h3 className="text-lg font-bold text-white relative pb-3 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-12 after:h-0.5 after:bg-emerald-500">
                         روابط مفيدة
@@ -119,6 +122,16 @@ function Footer() {
                         </a>
                     </div>
                 </div>
+
+                {/* العمود الرابع: الشعار الثاني (اليسار) - بدون أي إضافات */}
+                <div className="lg:col-span-1 flex items-center justify-start lg:justify-center pt-8 lg:pt-0">
+                    <img 
+                        src={SecondLogo} 
+                        alt="Logo" 
+                        className="h-50 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+
             </div>
 
             <div className="border-t border-slate-800 bg-[#0b1325]/60 text-xs text-slate-500 py-6">
