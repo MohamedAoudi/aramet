@@ -30,7 +30,7 @@ function Footer() {
             <div className="border-b border-slate-700/50 bg-[#0b1325]">
                 <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-right">
                     <div className="flex items-center justify-center md:justify-start gap-3">
-                        <div className="p-2 bg-slate-800 rounded-lg text-emerald-400">
+                        <div className="p-2 bg-slate-800 rounded-lg text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -43,19 +43,19 @@ function Footer() {
                     </div>
 
                     <div className="flex items-center justify-center md:justify-start gap-3">
-                        <div className="p-2 bg-slate-800 rounded-lg text-emerald-400">
+                        <div className="p-2 bg-slate-800 rounded-lg text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                         </div>
                         <div>
                             <p className="text-xs text-slate-400">راسلنا هنا</p>
-                            <a href="mailto:info@aramet.org" className="text-sm font-medium text-white hover:text-emerald-400 transition-colors">info@aramet.org</a>
+                            <a href="mailto:info@aramet.org" className="text-sm font-medium text-white hover:text-white transition-colors">info@aramet.org</a>
                         </div>
                     </div>
 
                     <div className="flex items-center justify-center md:justify-start gap-3">
-                        <div className="p-2 bg-slate-800 rounded-lg text-emerald-400">
+                        <div className="p-2 bg-slate-800 rounded-lg text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
@@ -83,42 +83,42 @@ function Footer() {
 
                 {/* العمود الثاني والثالث: الروابط (الوسط) */}
                 <div className="lg:col-span-2 space-y-4">
-                    <h3 className="text-lg font-bold text-white relative pb-3 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-12 after:h-0.5 after:bg-emerald-500">
+                    <h3 className="text-lg font-bold text-white relative pb-3 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-12 after:h-0.5 after:bg-white">
                         روابط مفيدة
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3 pt-2">
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> عن التجمع
+                            <span className="text-white text-xs">←</span> عن التجمع
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> التأسيس
+                            <span className="text-white text-xs">←</span> التأسيس
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> الأهداف
+                            <span className="text-white text-xs">←</span> الأهداف
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> المهام
+                            <span className="text-white text-xs">←</span> المهام
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> الجمعية العمومية
+                            <span className="text-white text-xs">←</span> الجمعية العمومية
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> اللجان
+                            <span className="text-white text-xs">←</span> اللجان
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> قاعدة الخبراء
+                            <span className="text-white text-xs">←</span> قاعدة الخبراء
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> الأدلة والمنشورات
+                            <span className="text-white text-xs">←</span> الأدلة والمنشورات
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> نقل المعرفة وبناء القدرات
+                            <span className="text-white text-xs">←</span> نقل المعرفة وبناء القدرات
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> الأنشطة والفعاليات
+                            <span className="text-white text-xs">←</span> الأنشطة والفعاليات
                         </a>
                         <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-emerald-500 text-xs">←</span> اتصال
+                            <span className="text-white text-xs">←</span> اتصال
                         </a>
                     </div>
                 </div>
