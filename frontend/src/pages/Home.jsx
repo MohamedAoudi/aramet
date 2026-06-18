@@ -55,7 +55,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative w-screen h-[700px] overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+      <section className="relative w-full max-w-full h-[700px] overflow-hidden">
         
         {/* خلفية فيديو ثابتة ومستمرة للقسم بالكامل */}
         <div className="absolute inset-0 w-full h-full z-0">
