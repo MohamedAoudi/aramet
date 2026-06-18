@@ -1,10 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ArametFooterLogo from '../assets/Aramet-footer-logo.png';
 import SecondLogo from '../assets/logo-aidsmo white.svg'; 
 
-function Footer({ currentLang = 'AR', toggleLanguage }) {
+function Footer({ currentLang: propLang, toggleLanguage }) {
+    const [currentLang, setCurrentLang] = useState(() => {
+        try { return propLang || localStorage.getItem('aramet_lang') || 'AR' } catch (e) { return propLang || 'AR' }
+    })
+
+    useEffect(() => {
+        const handler = (e) => {
+            const next = e?.detail || localStorage.getItem('aramet_lang') || 'AR'
+            setCurrentLang(next)
+        }
+        window.addEventListener('aramet:lang', handler)
+        return () => window.removeEventListener('aramet:lang', handler)
+    }, [])
+
+    const translations = {
+        AR: {
+            addressLabel: 'عنوان المنظمة',
+            addressText: 'شارع فرنسا ,الرباط - اكدال, المملكة المغربية',
+            contactLabel: 'راسلنا هنا',
+            email: 'info@aramet.org',
+            phoneLabel: 'رقم الهاتف',
+            linksTitle: 'روابط مفيدة',
+            links: ['عن التجمع','التأسيس','الأهداف','المهام','الجمعية العمومية','اللجان','قاعدة الخبراء','الأدلة والمنشورات','نقل المعرفة وبناء القدرات','الأنشطة والفعاليات','اتصال'],
+            phoneNumber: '(+212)53-7274500',
+            copyrightLine1: 'المنظمة العربية للتنمية الصناعية والتقييس والتعدين',
+            copyrightLine2: 'جميع الحقوق محفوظة © 2026 - ARAMET.',
+            toggleLabel: (lang) => (lang === 'AR' ? 'EN' : 'AR'),
+            arrow: '←'
+        },
+        EN: {
+            addressLabel: 'Address',
+            addressText: 'France Street, Rabat - Agdal, Kingdom of Morocco',
+            contactLabel: 'Contact us',
+            email: 'info@aramet.org',
+            phoneLabel: 'Phone',
+            linksTitle: 'Useful links',
+            links: ['About','Foundation','Goals','Tasks','General Assembly','Committees','Experts Database','Guides & Publications','Knowledge Transfer','Activities & Events','Contact'],
+            phoneNumber: '(+212)53-7274500',
+            copyrightLine1: 'Arab Organization for Industrial Development, Standardization and Mining',
+            copyrightLine2: 'All rights reserved © 2026 - ARAMET.',
+            toggleLabel: (lang) => (lang === 'AR' ? 'EN' : 'AR'),
+            arrow: '→'
+        }
+    }
+
+    const t = translations[currentLang] || translations.AR
+
+    const handleToggle = () => {
+        const next = currentLang === 'AR' ? 'EN' : 'AR'
+        try { localStorage.setItem('aramet_lang', next) } catch (e) {}
+        window.dispatchEvent(new CustomEvent('aramet:lang', { detail: next }))
+        if (typeof toggleLanguage === 'function') toggleLanguage(next)
+    }
+
+    const arrow = t.arrow
+
     return (
-        <footer className="relative w-full bg-[#0f1a30] text-slate-300 font-['Cairo',_sans-serif] pt-[50px] md:pt-[80px]" dir="rtl">
+        <footer className="relative w-full bg-[#0f1a30] text-slate-300 font-['Cairo',_sans-serif] pt-[50px] md:pt-[80px]" dir={currentLang === 'AR' ? 'rtl' : 'ltr'}>
             
             {/* الأمواج العلوية */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-30 pointer-events-none rotate-180">
@@ -36,8 +91,8 @@ function Footer({ currentLang = 'AR', toggleLanguage }) {
                             </svg>
                         </div>
                         <div>
-                            <p className="text-xs text-slate-400">عنوان المنظمة</p>
-                            <p className="text-sm font-medium text-white">شارع فرنسا ,الرباط - اكدال, المملكة المغربية</p>
+                            <p className="text-xs text-slate-400">{t.addressLabel}</p>
+                            <p className="text-sm font-medium text-white">{t.addressText}</p>
                         </div>
                     </div>
 
@@ -48,8 +103,8 @@ function Footer({ currentLang = 'AR', toggleLanguage }) {
                             </svg>
                         </div>
                         <div>
-                            <p className="text-xs text-slate-400">راسلنا هنا</p>
-                            <a href="mailto:info@aramet.org" className="text-sm font-medium text-white hover:text-white transition-colors">info@aramet.org</a>
+                            <p className="text-xs text-slate-400">{t.contactLabel}</p>
+                            <a href={`mailto:${t.email}`} className="text-sm font-medium text-white hover:text-white transition-colors">{t.email}</a>
                         </div>
                     </div>
 
@@ -60,8 +115,8 @@ function Footer({ currentLang = 'AR', toggleLanguage }) {
                             </svg>
                         </div>
                         <div>
-                            <p className="text-xs text-slate-400">رقم الهاتف</p>
-                            <p className="text-sm font-medium text-white select-all" dir="ltr">(+212)53-7274500</p>
+                            <p className="text-xs text-slate-400">{t.phoneLabel}</p>
+                            <p className="text-sm font-medium text-white select-all" dir="ltr">{t.phoneNumber}</p>
                         </div>
                     </div>
                 </div>
@@ -76,49 +131,21 @@ function Footer({ currentLang = 'AR', toggleLanguage }) {
                         <img src={ArametFooterLogo} alt="Logo ARAMET" className="h-20 w-auto object-contain"/>
                     </div>
                     <p className="text-sm leading-relaxed text-slate-400 text-justify">
-                        التجمع العربي للمترولوجيا هو نظام إقليمي متخصص للجهات الرسمية في الدول العربية العاملة في مجال المترولوجيا القانونية والعلمية والصناعية.
+                        {currentLang === 'AR' ? 'التجمع العربي للمترولوجيا هو نظام إقليمي متخصص للجهات الرسمية في الدول العربية العاملة في مجال المترولوجيا القانونية والعلمية والصناعية.' : 'The Arab Association for Metrology is a regional body for official metrology authorities in Arab countries focusing on legal, scientific and industrial metrology.'}
                     </p>
                 </div>
 
                 {/* العمود الثاني والثالث: الروابط (الوسط) */}
                 <div className="lg:col-span-2 space-y-4">
                     <h3 className="text-lg font-bold text-white relative pb-3 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-12 after:h-0.5 after:bg-white">
-                        روابط مفيدة
+                        {t.linksTitle}
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3 pt-2">
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> عن التجمع
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> التأسيس
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> الأهداف
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> المهام
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> الجمعية العمومية
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> اللجان
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> قاعدة الخبراء
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> الأدلة والمنشورات
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> نقل المعرفة وبناء القدرات
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> الأنشطة والفعاليات
-                        </a>
-                        <a href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
-                            <span className="text-white text-xs">←</span> اتصال
-                        </a>
+                        {t.links.map((lnk, i) => (
+                            <a key={i} href="#" className="text-sm text-slate-400 hover:text-white hover:translate-x-[-4px] transition-all duration-200 flex items-center gap-2">
+                                <span className="text-white text-xs">{arrow}</span> {lnk}
+                            </a>
+                        ))}
                     </div>
                 </div>
 
@@ -146,12 +173,12 @@ function Footer({ currentLang = 'AR', toggleLanguage }) {
                     {/* زر تغيير اللغة (موسط تماماً) */}
                     <div className="flex justify-center">
                         <button 
-                            onClick={toggleLanguage}
+                            onClick={handleToggle}
                             className="cursor-pointer text-slate-300 font-bold px-3 py-1.5 rounded-lg text-sm transition-all flex items-center gap-1.5 border border-slate-700/50 hover:border-slate-600 hover:text-white hover:bg-slate-800/50 active:scale-95"
                             dir="ltr"
                         >
                             <i className="pi pi-globe text-xs"></i>
-                            <span>{currentLang === 'AR' ? 'FR' : 'AR'}</span>
+                            <span>{t.toggleLabel(currentLang)}</span>
                         </button>
                     </div>
                     

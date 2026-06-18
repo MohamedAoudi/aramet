@@ -4,54 +4,117 @@ import bgHome from '../assets/bg home.mp4';
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const slides = [
-     {
-      id: 1,
-      title: "اليوم العالمي للمترولوجيا 2026",
-      subtitle: "تحت شعار “المترولوجيا: بناء الثقة في صنع السياسات”",
-      image: "https://aramet.org/wp-content/uploads/2025/09/WMD_ARAMET_2026_AR_A1-scaled.png",
-      buttonText: "اقرأ المزيد"
+  const [currentLang, setCurrentLang] = useState(() => {
+    try { return localStorage.getItem('aramet_lang') || 'AR' } catch (e) { return 'AR' }
+  })
+
+  const translations = {
+    AR: {
+      slides: [
+        {
+          id: 1,
+          title: "اليوم العالمي للمترولوجيا 2026",
+          subtitle: "تحت شعار “المترولوجيا: بناء الثقة في صنع السياسات”",
+          image: "https://aramet.org/wp-content/uploads/2025/09/WMD_ARAMET_2026_AR_A1-scaled.png",
+          buttonText: "اقرأ المزيد"
+        },
+        {
+          id: 2,
+          title: "من نحن",
+          subtitle: "التجمع العربي للمترولوجيا (ARAMET) يهدف إلى تعزيز التعاون وتطوير البنية التحتية للقياس في الدول العربية.",
+          image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop",
+          buttonText: "تعرف علينا"
+        },
+        {
+          id: 3,
+          title: "آخر خبر",
+          subtitle: "ورشة عمل حول كيفية التحقق من أدوات قياس تدفق السوائل الكهرومغناطيسية.",
+          image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop",
+          buttonText: "التفاصيل"
+        },
+        {
+          id: 4,
+          title: "برنامج تدريبي",
+          subtitle: "تطوير الكفاءات الفنية وبناء القدرات في مجالات القياس والمعايرة الدقيقة.",
+          image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop",
+          buttonText: "سجل الآن"
+        },
+        {
+          id: 5,
+          title: "آخر مقارنة",
+          subtitle: "المقارنات البينية لضمان دقة وتوحيد القياسات بين المعاهد الوطنية.",
+          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+          buttonText: "عرض النتائج"
+        }
+      ]
     },
-    {
-      id: 2,
-      title: "من نحن",
-      subtitle: "التجمع العربي للمترولوجيا (ARAMET) يهدف إلى تعزيز التعاون وتطوير البنية التحتية للقياس في الدول العربية.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop",
-      buttonText: "تعرف علينا"
-    },
-    {
-      id: 3,
-      title: "آخر خبر",
-      subtitle: "ورشة عمل حول كيفية التحقق من أدوات قياس تدفق السوائل الكهرومغناطيسية.",
-      image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop",
-      buttonText: "التفاصيل"
-    },
-    {
-      id: 4,
-      title: "برنامج تدريبي",
-      subtitle: "تطوير الكفاءات الفنية وبناء القدرات في مجالات القياس والمعايرة الدقيقة.",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop",
-      buttonText: "سجل الآن"
-    },
-    {
-      id: 5,
-      title: "آخر مقارنة",
-      subtitle: "المقارنات البينية لضمان دقة وتوحيد القياسات بين المعاهد الوطنية.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
-      buttonText: "عرض النتائج"
+    EN: {
+      slides: [
+        {
+          id: 1,
+          title: 'World Metrology Day 2026',
+          subtitle: 'Under the motto "Metrology: Building confidence in policymaking"',
+          image: 'https://aramet.org/wp-content/uploads/2025/09/WMD_ARAMET_2026_AR_A1-scaled.png',
+          buttonText: 'Read more'
+        },
+        {
+          id: 2,
+          title: 'Who we are',
+          subtitle: 'The Arab Association for Metrology (ARAMET) aims to strengthen cooperation and develop measurement infrastructure in Arab countries.',
+          image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop',
+          buttonText: 'Learn more'
+        },
+        {
+          id: 3,
+          title: 'Latest news',
+          subtitle: 'A workshop on verification of electromagnetic flowmeter instruments.',
+          image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop',
+          buttonText: 'Details'
+        },
+        {
+          id: 4,
+          title: 'Training program',
+          subtitle: 'Developing technical competencies and capacity building in precision measurement and calibration.',
+          image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop',
+          buttonText: 'Register'
+        },
+        {
+          id: 5,
+          title: 'Latest comparison',
+          subtitle: 'Interlaboratory comparisons to ensure accuracy and harmonization of measurements among national institutes.',
+          image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop',
+          buttonText: 'View results'
+        }
+      ]
     }
-  ];
+  }
+
+  const slides = translations[currentLang].slides
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [slides.length]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      const next = e?.detail || localStorage.getItem('aramet_lang') || 'AR'
+      setCurrentLang(next)
+    }
+    window.addEventListener('aramet:lang', handler)
+    return () => window.removeEventListener('aramet:lang', handler)
+  }, [])
 
   // التحقق مما إذا كان السلايد الحالي هو سلايد اليوم العالمي للمترولوجيا (id: 1)
   const isWorldMetrologyDay = slides[currentIndex].id === 1;
+
+  const isRTL = currentLang === 'AR'
+  const textOrderClasses = isRTL ? 'order-2 lg:order-1' : 'order-1 lg:order-2'
+  const imageOrderClasses = isRTL ? 'order-1 lg:order-2' : 'order-2 lg:order-1'
+  const textAlignClass = isRTL ? 'text-right' : 'text-left'
+  const buttonArrow = isRTL ? '←' : '→'
 
   return (
     <>
@@ -94,7 +157,7 @@ export default function Home() {
 
         {/* المحتوى فوق الفيديو والأمواج */}
         <div 
-          dir="rtl" 
+          dir={currentLang === 'AR' ? 'rtl' : 'ltr'} 
           className="relative z-20 w-full h-full flex flex-col md:flex-row font-sans"
         >
           
@@ -146,7 +209,7 @@ export default function Home() {
               >
                 
                 {/* قسم النصوص المستجيب لتغير حجم المكون */}
-                <div className={`w-full flex flex-col justify-center order-2 lg:order-1 z-10 text-right transition-all duration-500
+                <div className={`w-full flex flex-col justify-center ${textOrderClasses} z-10 ${textAlignClass} transition-all duration-500
                   ${isWorldMetrologyDay ? 'lg:w-1/2' : 'lg:w-full max-w-3xl mx-auto'}`}
                 >
                   <motion.h1 
@@ -182,13 +245,13 @@ export default function Home() {
                     whileTap={{ scale: 0.95 }}
                     className="bg-white hover:bg-gray-100 text-[#0F2982] text-sm md:text-base font-bold py-2.5 px-6 rounded-full shadow-lg w-fit transition-colors"
                   >
-                    {slides[currentIndex].buttonText} ←
+                    {slides[currentIndex].buttonText} {buttonArrow}
                   </motion.button>
                 </div>
 
                 {/* قسم الصورة الكبيرة: يعرض فقط وفقط مع سلايد اليوم العالمي للمترولوجيا */}
                 {isWorldMetrologyDay && (
-                  <div className="w-full lg:w-1/2 flex justify-center items-center order-1 lg:order-2 h-full max-h-[300px] lg:max-h-[500px] py-4">
+                  <div className={`w-full lg:w-1/2 flex justify-center items-center ${imageOrderClasses} h-full max-h-[300px] lg:max-h-[500px] py-4`}>
                     <motion.img 
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}

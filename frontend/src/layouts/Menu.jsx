@@ -1,46 +1,98 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import aidsmoLogo from '../assets/aidsmo logo sans bg 800x 800.png'
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentLang, setCurrentLang] = useState('AR')
+  useEffect(() => {
+    const stored = localStorage.getItem('aramet_lang')
+    if (stored && stored !== currentLang) setCurrentLang(stored)
+    // keep localStorage in sync and notify other components when changed
+  }, [])
   const location = useLocation()
 
-  const items = [
-    { label: 'الرئيسية', link: '/' },
-    {
-      label: 'عن الأراميت',
-      subItems: [
-        { label: 'من نحن', link: '/about/who-we-are' },
-        { label: 'الأهداف', link: '/about/goals' },
-        { label: 'الهيكل التنظيمي', link: '/about/structure' },
-        { label: 'الدول الأعضاء', link: '/about/members' }
+  
+
+  const translations = {
+    AR: {
+      searchPlaceholder: 'بحث...',
+      address: 'شارع فرنسا، الرباط - أكدال',
+      email: 'info@aramet.com',
+      items: [
+        { label: 'الرئيسية', link: '/' },
+        {
+          label: 'عن الأراميت',
+          subItems: [
+            { label: 'من نحن', link: '/about/who-we-are' },
+            { label: 'الأهداف', link: '/about/goals' },
+            { label: 'الهيكل التنظيمي', link: '/about/structure' },
+            { label: 'الدول الأعضاء', link: '/about/members' }
+          ]
+        },
+        {
+          label: 'اللجان',
+          subItems: [
+            { label: 'اللجان التنفيذية', link: '/committees/executive' },
+            { label: 'اللجان الفنية', link: '/committees/technical' }
+          ]
+        },
+        { label: 'البرامج', link: '/programs' },
+        { label: 'الجودة والمقارنات', link: '/quality' },
+        { label: 'الاجتماعات والفعاليات', link: '/events' },
+        { label: 'الأخبار', link: '/news' },
+        { label: 'اتصل بنا', link: '/contact' }
       ]
     },
-    {
-      label: 'اللجان',
-      subItems: [
-        { label: 'اللجان التنفيذية', link: '/committees/executive' },
-        { label: 'اللجان الفنية', link: '/committees/technical' }
+    EN: {
+      searchPlaceholder: 'Search...',
+      address: 'France Street, Rabat - Agdal',
+      email: 'info@aramet.com',
+      items: [
+        { label: 'Home', link: '/' },
+        {
+          label: 'About Aramet',
+          subItems: [
+            { label: 'Who we are', link: '/about/who-we-are' },
+            { label: 'Goals', link: '/about/goals' },
+            { label: 'Structure', link: '/about/structure' },
+            { label: 'Member states', link: '/about/members' }
+          ]
+        },
+        {
+          label: 'Committees',
+          subItems: [
+            { label: 'Executive Committees', link: '/committees/executive' },
+            { label: 'Technical Committees', link: '/committees/technical' }
+          ]
+        },
+        { label: 'Programs', link: '/programs' },
+        { label: 'Quality & Comparisons', link: '/quality' },
+        { label: 'Meetings & Events', link: '/events' },
+        { label: 'News', link: '/news' },
+        { label: 'Contact', link: '/contact' }
       ]
-    },
-    { label: 'البرامج', link: '/programs' },
-    { label: 'الجودة والمقارنات', link: '/quality' },
-    { label: 'الاجتماعات والفعاليات', link: '/events' },
-    { label: 'الأخبار', link: '/news' },
-    { label: 'اتصل بنا', link: '/contact' }
-  ]
+    }
+  }
+
+  const items = translations[currentLang].items
 
   const toggleLanguage = () => {
-    setCurrentLang(prev => (prev === 'AR' ? 'FR' : 'AR'))
+    setCurrentLang(prev => (prev === 'AR' ? 'EN' : 'AR'))
   }
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('aramet_lang', currentLang)
+      window.dispatchEvent(new CustomEvent('aramet:lang', { detail: currentLang }))
+    } catch (e) {}
+  }, [currentLang])
 
   const isActive = (path) => location.pathname === path
   const isParentActive = (subItems) => subItems?.some(sub => isActive(sub.link))
 
   return (
-    <div className="w-full font-sans" dir="rtl">
+    <div className="w-full font-sans" dir={currentLang === 'AR' ? 'rtl' : 'ltr'}>
       {/* Top Bar */}
       <div className="w-full bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
@@ -51,7 +103,7 @@ export default function Menu() {
               <div className="flex w-full rounded-lg overflow-hidden shadow-sm border border-gray-300 bg-white">
                 <input
                   type="text"
-                  placeholder="بحث..."
+                  placeholder={translations[currentLang].searchPlaceholder}
                   className="w-full px-4 py-2 text-sm focus:outline-none"
                 />
                 <button className="cursor-pointer bg-[#0F2982] hover:bg-[#0a2268] text-white px-4 transition-colors">
@@ -66,11 +118,11 @@ export default function Menu() {
               <div className="flex flex-col xl:flex-row gap-3 xl:gap-5 items-center hidden lg:flex">
                 <span className="flex items-center gap-2">
                   <i className="pi pi-map-marker text-[#0F2982]"></i>
-                  <span>شارع فرنسا، الرباط - أكدال</span>
+                  <span>{translations[currentLang].address}</span>
                 </span>
                 <span className="flex items-center gap-2">
                   <i className="pi pi-envelope text-[#0F2982]"></i>
-                  <span>info@aramet.com</span>
+                  <span>{translations[currentLang].email}</span>
                 </span>
               </div>
 
@@ -87,7 +139,7 @@ export default function Menu() {
                   className="cursor-pointer text-[#0F2982] font-bold px-2 py-1 rounded-lg text-sm transition-all flex items-center gap-1.5 hover:text-[#0a2268] hover:bg-[#0F2982]/5 active:scale-95"
                 >
                   <i className="pi pi-globe text-xs "></i>
-                  <span>{currentLang === 'AR' ? 'FR' : 'AR'}</span>
+                  <span>{currentLang === 'AR' ? 'EN' : 'AR'}</span>
                 </button>
               </div>
                 
