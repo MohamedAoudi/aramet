@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import bgHome from '../assets/bg home.mp4';
+import logoOIML from '../assets/logos/Logo-OIML.png';
+import logoEURAMET from '../assets/logos/logo-euromet.png';
+import logoGULFMET from '../assets/logos/logo-gulfmet.png';
+import logoARAC from '../assets/logos/logo-spn-arac.png';
+import logoBIPM from '../assets/logos/International_Bureau_of_Weights_and_Measures_BPIM_Logo-1.png';
+import logoAFRIMETS from '../assets/logos/Logo-Afri-met.png';
+import logoISO from '../assets/logos/logo-spn-iso.png';
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -183,7 +190,20 @@ export default function Home() {
           statusColor: "text-orange-600 bg-orange-100",
           icon: "M13 10V3L4 14h7v7l9-11h-7z"
         }
+      ],
+      partnersTitle: "الشركاء والمنظمات الدولية",
+      partnersSub: "يرتبط التجمع بشراكات وثيقة وعضويات فاعلة مع كبرى الهيئات الدولية والإقليمية لضمان قبول شهادات القياس والمعايرة عالمياً",
+      partnersList: [
+        { id: 1, name: "OIML", logo: logoOIML },
+        { id: 2, name: "EURAMET", logo: logoEURAMET },
+        { id: 3, name: "GULFMET", logo: logoGULFMET },
+        { id: 4, name: "ARAC", logo: logoARAC },
+        { id: 5, name: "BIPM", logo: logoBIPM },
+        { id: 6, name: "AIDSMO", logo: logoISO },
+        { id: 7, name: "AFRIMETS", logo: logoAFRIMETS }
       ]
+
+
     },
     EN: {
       slides: [
@@ -356,6 +376,17 @@ export default function Home() {
           statusColor: "text-orange-600 bg-orange-100",
           icon: "M13 10V3L4 14h7v7l9-11h-7z"
         }
+      ],
+      partnersTitle: "International Partners",
+      partnersSub: "We establish strategic alliances with prominent global and regional organizations to strengthen quality infrastructure",
+      partnersList: [
+        { id: 1, name: "OIML", logo: logoOIML },
+        { id: 2, name: "EURAMET", logo: logoEURAMET },
+        { id: 3, name: "GULFMET", logo: logoGULFMET },
+        { id: 4, name: "ARAC", logo: logoARAC },
+        { id: 5, name: "BIPM", logo: logoBIPM },
+        { id: 6, name: "AIDSMO", logo: logoISO },
+        { id: 7, name: "AFRIMETS", logo: logoAFRIMETS }
       ]
     }
   };
@@ -365,6 +396,12 @@ export default function Home() {
   const newsList = translations[currentLang].news;
   const qmsData = translations[currentLang];
   const ilcData = translations[currentLang];
+  
+  // تكرار القائمة مرتين فقط (لإنشاء حلقة متصلة رياضياً بنسبة 50%)
+  const marqueePartners = [
+    ...translations[currentLang].partnersList, 
+    ...translations[currentLang].partnersList
+  ];
 
   // Timers
   useEffect(() => {
@@ -875,6 +912,47 @@ export default function Home() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* SECTION : PARTNERS (المنظمات الشريكة بألوانها الأصلية وخلفية بيضاء - حلقة متصلة) */}
+      <section className="w-full bg-white py-16 border-t border-slate-200 overflow-hidden">
+        <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-6xl font-sans mb-10 text-center">
+          <h2 className="text-2xl md:text-3xl font-black text-[#0F2982] mb-3">{translations[currentLang].partnersTitle}</h2>
+          <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">{translations[currentLang].partnersSub}</p>
+        </div>
+        
+        {/* شريط الصور المتحرك لا نهائياً (Marquee) - بإعدادات مسافات دقيقة للحصول على Perfect Loop */}
+        <div className="relative w-full flex overflow-hidden group">
+          {/* تأثير التدرج (Fade) على جانبي الشريط (متوافق مع الخلفية البيضاء) */}
+          <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          {/* لتكوين حلقة مثالية (Perfect Loop):
+            1. استخدمنا 14 عنصر (7 مكررة مرتين).
+            2. استخدمنا gap-16 (أو مسافة محددة).
+            3. أضفنا Padding في النهاية يماثل تماماً حجم الـ gap (pr-16 أو pl-16).
+            4. قمنا بتحريك الـ x بنسبة 50% (أي إزاحة المجموعة الأولى بالكامل).
+          */}
+          <motion.div
+            className={`flex items-center gap-16 md:gap-24 w-max py-4 ${isRTL ? 'pl-16 md:pl-24' : 'pr-16 md:pr-24'}`}
+            animate={{ x: isRTL ? ["0%", "50%"] : ["0%", "-50%"] }}
+            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+          >
+            {marqueePartners.map((partner, index) => (
+              <div 
+                key={index} 
+                className="w-32 md:w-44 h-24 shrink-0 flex items-center justify-center hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name} 
+                  className="max-w-full h-full object-contain" 
+                  
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
