@@ -6,6 +6,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [currentQmsIndex, setCurrentQmsIndex] = useState(0);
+  const [currentIlcIndex, setCurrentIlcIndex] = useState(0);
   const [currentLang, setCurrentLang] = useState(() => {
     try { return localStorage.getItem('aramet_lang') || 'AR' } catch (e) { return 'AR' }
   });
@@ -133,6 +134,55 @@ export default function Home() {
           status: "قيد التنفيذ (Implementation)",
           countryCode: "ae"
         }
+      ],
+      ilcSectionTitle: "برامج المقارنات البينية",
+      ilcSectionSub: "أحدث برامج إثبات الكفاءة الفنية والتكافؤ الدولي بين المعاهد الوطنية",
+      ilcLabels: {
+        type: "النوع:",
+        stage: "المرحلة:",
+        status: "الحالة:",
+        subFields: "Sub Fields:",
+        area: "منطقة القياس:",
+        pilot: "المختبر التجريبي:",
+        details: "التفاصيل"
+      },
+      ilcList: [
+        {
+          id: 1,
+          code: "ARAMET.M-K3",
+          type: "Key Comparison",
+          stage: "Schedule",
+          status: "In Progress",
+          subFields: "Small and Medium Mass Calibration",
+          area: "Mass Metrology",
+          pilot: "المركز الوطني للمترولوجيا/المملكة الأردنية الهاشمية",
+          statusColor: "text-blue-600 bg-blue-100",
+          icon: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+        },
+        {
+          id: 2,
+          code: "ARAMET.TM-K1",
+          type: "Key Comparison",
+          stage: "Approved",
+          status: "In Progress",
+          subFields: "Temperature Sensor Calibration RTD (Resistance Temperature Detector) Calibration Pt-100 Sensor Calibration Temperature Measurement Systems Calibration of Indicators with Sensors",
+          area: "Thermal Metrology",
+          pilot: "المعهد القومي للقياس والمعايرة",
+          statusColor: "text-blue-600 bg-blue-100",
+          icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+        },
+        {
+          id: 3,
+          code: "ARAMET.EM-K2",
+          type: "Key Comparison",
+          stage: "Approved",
+          status: "Waiting for approval",
+          subFields: "N/A",
+          area: "Electrical Metrology",
+          pilot: "المعهد القومي للقياس والمعايرة",
+          statusColor: "text-orange-600 bg-orange-100",
+          icon: "M13 10V3L4 14h7v7l9-11h-7z"
+        }
       ]
     },
     EN: {
@@ -257,6 +307,55 @@ export default function Home() {
           status: "Implementation",
           countryCode: "ae"
         }
+      ],
+      ilcSectionTitle: "Interlaboratory Comparisons",
+      ilcSectionSub: "Latest programs demonstrating technical competence and international equivalence",
+      ilcLabels: {
+        type: "Type:",
+        stage: "Stage:",
+        status: "Status:",
+        subFields: "Sub Fields:",
+        area: "Measurement Area:",
+        pilot: "Pilot Lab:",
+        details: "Details"
+      },
+      ilcList: [
+        {
+          id: 1,
+          code: "ARAMET.M-K3",
+          type: "Key Comparison",
+          stage: "Schedule",
+          status: "In Progress",
+          subFields: "Small and Medium Mass Calibration",
+          area: "Mass Metrology",
+          pilot: "National Metrology Center / Hashemite Kingdom of Jordan",
+          statusColor: "text-blue-600 bg-blue-100",
+          icon: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+        },
+        {
+          id: 2,
+          code: "ARAMET.TM-K1",
+          type: "Key Comparison",
+          stage: "Approved",
+          status: "In Progress",
+          subFields: "Temperature Sensor Calibration RTD (Resistance Temperature Detector) Calibration Pt-100 Sensor Calibration Temperature Measurement Systems Calibration of Indicators with Sensors",
+          area: "Thermal Metrology",
+          pilot: "National Institute of Standards (NIS)",
+          statusColor: "text-blue-600 bg-blue-100",
+          icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+        },
+        {
+          id: 3,
+          code: "ARAMET.EM-K2",
+          type: "Key Comparison",
+          stage: "Approved",
+          status: "Waiting for approval",
+          subFields: "N/A",
+          area: "Electrical Metrology",
+          pilot: "National Institute of Standards (NIS)",
+          statusColor: "text-orange-600 bg-orange-100",
+          icon: "M13 10V3L4 14h7v7l9-11h-7z"
+        }
       ]
     }
   };
@@ -265,6 +364,7 @@ export default function Home() {
   const events = translations[currentLang].events;
   const newsList = translations[currentLang].news;
   const qmsData = translations[currentLang];
+  const ilcData = translations[currentLang];
 
   // Timers
   useEffect(() => {
@@ -281,13 +381,19 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [events.length]);
 
-  // Timer QMS Slider
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentQmsIndex((prev) => (prev + 1) % qmsData.qmsList.length);
     }, 6000);
     return () => clearInterval(timer);
   }, [qmsData.qmsList.length]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIlcIndex((prev) => (prev + 1) % ilcData.ilcList.length);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [ilcData.ilcList.length]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -310,6 +416,9 @@ export default function Home() {
 
   const nextQms = () => setCurrentQmsIndex((prev) => (prev + 1) % qmsData.qmsList.length);
   const prevQms = () => setCurrentQmsIndex((prev) => (prev - 1 + qmsData.qmsList.length) % qmsData.qmsList.length);
+
+  const nextIlc = () => setCurrentIlcIndex((prev) => (prev + 1) % ilcData.ilcList.length);
+  const prevIlc = () => setCurrentIlcIndex((prev) => (prev - 1 + ilcData.ilcList.length) % ilcData.ilcList.length);
 
   return (
     <>
@@ -366,7 +475,7 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>    
+        </div>  
       </section>
 
       {/* SECTION ÉVÉNEMENTS PROCHAINS */}
@@ -573,7 +682,7 @@ export default function Home() {
                 className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl shadow-[#0F2982]/5 border border-white flex flex-col md:flex-row items-center gap-8"
               >
                 
-                {/* Icône / Drapeau (Mise à jour pour utiliser FlagCDN) */}
+                {/* Icône / Drapeau */}
                 <div className={`flex flex-col items-center justify-center w-full md:w-1/3 ${isRTL ? 'md:border-l' : 'md:border-r'} border-slate-200 pb-6 md:pb-0 md:px-6`}>
                   <div className="w-24 h-auto mb-4 overflow-hidden rounded-md shadow-md border border-slate-100">
                     <img 
@@ -636,6 +745,136 @@ export default function Home() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* SECTION : INTERLABORATORY COMPARISONS SLIDER (المقارنات البينية) */}
+      <section className="w-full bg-white py-24 border-t border-slate-100 overflow-hidden relative">
+        <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-5xl font-sans relative z-10">
+          
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className={`w-full md:w-2/3 ${textAlignClass}`}>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0F2982] block mb-2">
+                ARAMET ILC Programs
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2">{ilcData.ilcSectionTitle}</h2>
+              <p className="text-slate-500 text-sm md:text-base max-w-2xl">{ilcData.ilcSectionSub}</p>
+            </div>
+            
+            <div className="flex gap-3">
+              <button onClick={prevIlc} className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 flex items-center justify-center hover:bg-[#0F2982] hover:text-white hover:border-[#0F2982] transition-all shadow-sm font-bold text-lg">
+                {isRTL ? '→' : '←'}
+              </button>
+              <button onClick={nextIlc} className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 flex items-center justify-center hover:bg-[#0F2982] hover:text-white hover:border-[#0F2982] transition-all shadow-sm font-bold text-lg">
+                {isRTL ? '←' : '→'}
+              </button>
+            </div>
+          </div>
+
+          <div className="relative h-auto">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={currentIlcIndex} 
+                initial={{ opacity: 0, scale: 0.95 }} 
+                animate={{ opacity: 1, scale: 1 }} 
+                exit={{ opacity: 0, scale: 0.95 }} 
+                transition={{ duration: 0.4 }}
+                className="bg-white rounded-[2rem] p-6 md:p-8 shadow-2xl shadow-slate-200/50 border border-slate-100"
+              >
+                {/* Header of ILC Card */}
+                <div className={`flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-6 border-b border-slate-100 ${textAlignClass}`}>
+                  <div className="flex items-center gap-4 mb-4 sm:mb-0">
+                    <div className="w-16 h-16 rounded-2xl bg-[#0F2982] text-white shadow-lg flex items-center justify-center shrink-0">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={ilcData.ilcList[currentIlcIndex].icon} />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black text-slate-900 tracking-tight font-mono">
+                        {ilcData.ilcList[currentIlcIndex].code}
+                      </h3>
+                      <span className="text-sm font-bold text-slate-400">
+                        {ilcData.ilcList[currentIlcIndex].area}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold shadow-sm border border-white/20 ${ilcData.ilcList[currentIlcIndex].statusColor}`}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-current mr-2 rtl:ml-2 rtl:mr-0 animate-pulse"></span>
+                    {ilcData.ilcList[currentIlcIndex].status}
+                  </span>
+                </div>
+
+                {/* Details Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+                  
+                  {/* Info Points */}
+                  <div className={`flex flex-col gap-5 ${textAlignClass}`}>
+                    <div>
+                      <span className="block text-xs font-bold text-slate-400 uppercase mb-1">
+                        {ilcData.ilcLabels.type}
+                      </span>
+                      <span className="text-base font-bold text-slate-800">
+                        {ilcData.ilcList[currentIlcIndex].type}
+                      </span>
+                    </div>
+                    
+                    <div>
+                      <span className="block text-xs font-bold text-slate-400 uppercase mb-1">
+                        {ilcData.ilcLabels.stage}
+                      </span>
+                      <span className="text-base font-bold text-slate-800">
+                        {ilcData.ilcList[currentIlcIndex].stage}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="block text-xs font-bold text-slate-400 uppercase mb-1">
+                        {ilcData.ilcLabels.pilot}
+                      </span>
+                      <span className="inline-block bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-700">
+                        {ilcData.ilcList[currentIlcIndex].pilot}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Sub Fields */}
+                  <div className={`flex flex-col ${textAlignClass}`}>
+                    <span className="block text-xs font-bold text-slate-400 uppercase mb-2">
+                      {ilcData.ilcLabels.subFields}
+                    </span>
+                    <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 h-full">
+                      <p className="text-sm font-medium text-slate-600 leading-relaxed break-words">
+                        {ilcData.ilcList[currentIlcIndex].subFields}
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Card Action */}
+                <div className={`mt-8 pt-6 border-t border-slate-100 flex ${isRTL ? 'justify-end' : 'justify-end'}`}>
+                  <button className="text-sm font-bold text-[#0F2982] hover:text-blue-600 transition-colors flex items-center gap-2 group">
+                    <span className="underline underline-offset-4 decoration-2">{ilcData.ilcLabels.details}</span>
+                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{buttonArrow}</span>
+                  </button>
+                </div>
+
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Slider Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {ilcData.ilcList.map((_, idx) => (
+                <button 
+                  key={idx} 
+                  onClick={() => setCurrentIlcIndex(idx)} 
+                  className={`h-2 transition-all duration-300 rounded-full ${currentIlcIndex === idx ? 'w-8 bg-[#0F2982]' : 'w-2 bg-slate-200 hover:bg-slate-300'}`} 
+                />
+              ))}
+            </div>
+
+          </div>
         </div>
       </section>
 
