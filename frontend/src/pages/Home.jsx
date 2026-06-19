@@ -5,6 +5,7 @@ import bgHome from '../assets/bg home.mp4';
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
+  const [currentQmsIndex, setCurrentQmsIndex] = useState(0);
   const [currentLang, setCurrentLang] = useState(() => {
     try { return localStorage.getItem('aramet_lang') || 'AR' } catch (e) { return 'AR' }
   });
@@ -101,6 +102,37 @@ export default function Home() {
           desc: "متابعة المبادرات المشتركة لتطوير البنية التحتية للجودة والمترولوجيا في الدول العربية بما يتماشى مع المعايير الدولية والاعتراف المتبادل CIPM MRA.",
           image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
         }
+      ],
+      qmsSectionTitle: "أنظمة إدارة الجودة (TC-QS)",
+      qmsSectionSub: "أحدث المعاهد المنفذة لأنظمة إدارة الجودة وفق المواصفات الدولية",
+      qmsList: [
+        {
+          id: 1,
+          country: "المملكة المغربية",
+          code: "ARAMET QMS MA-01",
+          institute: "المختبر الوطني للمترولوجيا - المملكة المغربية",
+          standard: "ISO 17025",
+          status: "قيد التنفيذ (Implementation)",
+          countryCode: "ma"
+        },
+        {
+          id: 2,
+          country: "المملكة العربية السعودية",
+          code: "ARAMET QMS A01-6",
+          institute: "المركز الوطني للقياس والمعايرة",
+          standard: "ISO 17043",
+          status: "قيد التنفيذ (Implementation)",
+          countryCode: "sa"
+        },
+        {
+          id: 3,
+          country: "دولة الإمارات العربية المتحدة",
+          code: "ARAMET QMS UAE-01",
+          institute: "معهد الإمارات للمترولوجيا (EMI)",
+          standard: "ISO 17025",
+          status: "قيد التنفيذ (Implementation)",
+          countryCode: "ae"
+        }
       ]
     },
     EN: {
@@ -194,15 +226,47 @@ export default function Home() {
           desc: "Following up on joint initiatives to advance quality and metrology infrastructure in Arab nations in alignment with international standards and the CIPM MRA.",
           image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
         }
+      ],
+      qmsSectionTitle: "Quality Management Systems (TC-QS)",
+      qmsSectionSub: "Latest institutes implementing QMS according to international standards",
+      qmsList: [
+        {
+          id: 1,
+          country: "Kingdom of Morocco",
+          code: "ARAMET QMS MA-01",
+          institute: "National Laboratory of Metrology (LNM)",
+          standard: "ISO 17025",
+          status: "Implementation",
+          countryCode: "ma"
+        },
+        {
+          id: 2,
+          country: "Kingdom of Saudi Arabia",
+          code: "ARAMET QMS A01-6",
+          institute: "National Measurement and Calibration Center (NMCC)",
+          standard: "ISO 17043",
+          status: "Implementation",
+          countryCode: "sa"
+        },
+        {
+          id: 3,
+          country: "United Arab Emirates",
+          code: "ARAMET QMS UAE-01",
+          institute: "Emirates Metrology Institute (EMI)",
+          standard: "ISO 17025",
+          status: "Implementation",
+          countryCode: "ae"
+        }
       ]
     }
-  }
+  };
 
   const slides = translations[currentLang].slides;
   const events = translations[currentLang].events;
   const newsList = translations[currentLang].news;
+  const qmsData = translations[currentLang];
 
-  // Timer Slider Principal
+  // Timers
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -210,13 +274,20 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Timer Slider Événements
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentEventIndex((prev) => (prev + 1) % events.length);
     }, 7000);
     return () => clearInterval(timer);
   }, [events.length]);
+
+  // Timer QMS Slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentQmsIndex((prev) => (prev + 1) % qmsData.qmsList.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [qmsData.qmsList.length]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -236,6 +307,9 @@ export default function Home() {
 
   const nextEvent = () => setCurrentEventIndex((prev) => (prev + 1) % events.length);
   const prevEvent = () => setCurrentEventIndex((prev) => (prev - 1 + events.length) % events.length);
+
+  const nextQms = () => setCurrentQmsIndex((prev) => (prev + 1) % qmsData.qmsList.length);
+  const prevQms = () => setCurrentQmsIndex((prev) => (prev - 1 + qmsData.qmsList.length) % qmsData.qmsList.length);
 
   return (
     <>
@@ -346,16 +420,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NOUVELLE SECTION : BANNIÈRE FOCUS JOURNÉE MONDIALE DE LA MÉTROLOGIE 2026 */}
+      {/* BANNIÈRE FOCUS JOURNÉE MONDIALE DE LA MÉTROLOGIE 2026 */}
       <section className="w-full bg-[#0b1d5c] text-white py-20 relative overflow-hidden">
-        {/* Cercles de fond décoratifs */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-6xl font-sans relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Colonne Gauche/Droite selon RTL : Affiche officielle */}
             <div className={`col-span-1 lg:col-span-5 flex justify-center ${isRTL ? 'lg:order-2' : 'lg:order-1'}`}>
               <motion.div 
                 whileHover={{ scale: 1.02 }}
@@ -369,7 +440,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Colonne Droite/Gauche selon RTL : Textes explicatifs */}
             <div className={`col-span-1 lg:col-span-7 ${textAlignClass} ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}>
               <span className="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block mb-4">
                 Global Event 2026
@@ -378,7 +448,6 @@ export default function Home() {
                 {translations[currentLang].wmdTitle}
               </h2>
               
-              {/* Le Slogan Mis en avant */}
               <div className={`my-6 p-4 border-l-4 border-blue-500 bg-white/5 rounded-r-xl ${isRTL ? 'border-l-0 border-r-4 rounded-r-none rounded-l-xl text-right' : ''}`}>
                 <p className="text-xl md:text-2xl font-extrabold text-blue-300">
                   {translations[currentLang].wmdSlogan}
@@ -389,23 +458,6 @@ export default function Home() {
                 {translations[currentLang].wmdDesc}
               </p>
 
-              {/* Petit tableau de bord / KPIs de confiance */}
-              <div className="grid grid-cols-3 gap-4 mb-8 pt-6 border-t border-white/10">
-                <div>
-                  <span className="block text-xl md:text-2xl font-black text-blue-400">20 May</span>
-                  <span className="block text-xs text-slate-400 mt-0.5">{currentLang === 'AR' ? 'موعد الحدث العالمي' : 'Global Date'}</span>
-                </div>
-                <div>
-                  <span className="block text-xl md:text-2xl font-black text-blue-400">100%</span>
-                  <span className="block text-xs text-slate-400 mt-0.5">{currentLang === 'AR' ? 'بناء الثقة والشفافية' : 'Confidence Built'}</span>
-                </div>
-                <div>
-                  <span className="block text-xl md:text-2xl font-black text-blue-400">CIPM</span>
-                  <span className="block text-xs text-slate-400 mt-0.5">{currentLang === 'AR' ? 'المعايير الدولية' : 'Global Standards'}</span>
-                </div>
-              </div>
-
-              {/* Action */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -414,16 +466,14 @@ export default function Home() {
                 {translations[currentLang].wmdBtn} {buttonArrow}
               </motion.button>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* SECTION : LATEST NEWS (آخر أخبار التجمع) */}
+      {/* SECTION : LATEST NEWS */}
       <section className="w-full bg-white py-20">
         <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-6xl font-sans">
           
-          {/* En-tête de la section News */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div className={textAlignClass}>
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-1">
@@ -437,7 +487,6 @@ export default function Home() {
               </p>
             </div>
             
-            {/* Bouton Voir tout */}
             <motion.button 
               whileHover={{ scale: 1.03 }} 
               whileTap={{ scale: 0.98 }}
@@ -447,7 +496,6 @@ export default function Home() {
             </motion.button>
           </div>
 
-          {/* Grille d'actualités */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {newsList.map((newsItem) => (
               <motion.article 
@@ -455,37 +503,30 @@ export default function Home() {
                 whileHover={{ y: -6 }}
                 className="bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-100/50 overflow-hidden flex flex-col justify-between h-full"
               >
-                {/* Image Conteneur */}
                 <div className="relative h-48 w-full overflow-hidden bg-slate-100 group">
                   <img 
                     src={newsItem.image} 
                     alt={newsItem.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* Badge de catégorie */}
                   <span className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} bg-[#0F2982] text-white text-[11px] font-bold py-1 px-3 rounded-full shadow-md`}>
                     {newsItem.tag}
                   </span>
                 </div>
 
-                {/* Contenu textuel */}
                 <div className={`p-6 flex-1 flex flex-col justify-between ${textAlignClass}`}>
                   <div>
-                    {/* Date de publication */}
                     <span className="text-xs text-slate-400 font-medium block mb-2">
                       📅 {newsItem.date}
                     </span>
-                    {/* Titre */}
                     <h3 className="text-base md:text-lg font-bold text-slate-900 leading-snug mb-3 hover:text-[#0F2982] transition-colors line-clamp-2">
                       {newsItem.title}
                     </h3>
-                    {/* Description abrégée */}
                     <p className="text-slate-500 text-xs md:text-sm leading-relaxed line-clamp-4">
                       {newsItem.desc}
                     </p>
                   </div>
 
-                  {/* Bouton lire la suite */}
                   <div className="mt-5 pt-4 border-t border-slate-50">
                     <button className="text-xs font-bold text-[#0F2982] hover:underline inline-flex items-center gap-1">
                       {currentLang === 'AR' ? 'اقرأ المزيد' : 'Read full story'} {buttonArrow}
@@ -496,9 +537,108 @@ export default function Home() {
               </motion.article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* SECTION : QUALITY MANAGEMENT SYSTEM SLIDER (أنظمة إدارة الجودة) */}
+      <section className="w-full bg-[#f8fafc] py-20 border-t border-slate-200 overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-40 z-0"></div>
+        
+        <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-5xl font-sans relative z-10">
+          
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+            <div className={`w-full md:w-2/3 ${textAlignClass}`}>
+              <h2 className="text-3xl font-black text-[#0F2982] mb-2">{qmsData.qmsSectionTitle}</h2>
+              <p className="text-slate-600 font-medium">{qmsData.qmsSectionSub}</p>
+            </div>
+            
+            <div className="flex gap-3">
+              <button onClick={prevQms} className="w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center hover:bg-[#0F2982] hover:text-white transition-all shadow-md font-bold text-lg">
+                {isRTL ? '→' : '←'}
+              </button>
+              <button onClick={nextQms} className="w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center hover:bg-[#0F2982] hover:text-white transition-all shadow-md font-bold text-lg">
+                {isRTL ? '←' : '→'}
+              </button>
+            </div>
+          </div>
+
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={currentQmsIndex} 
+                initial={{ opacity: 0, x: isRTL ? -30 : 30 }} 
+                animate={{ opacity: 1, x: 0 }} 
+                exit={{ opacity: 0, x: isRTL ? 30 : -30 }} 
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl shadow-[#0F2982]/5 border border-white flex flex-col md:flex-row items-center gap-8"
+              >
+                
+                {/* Icône / Drapeau (Mise à jour pour utiliser FlagCDN) */}
+                <div className={`flex flex-col items-center justify-center w-full md:w-1/3 ${isRTL ? 'md:border-l' : 'md:border-r'} border-slate-200 pb-6 md:pb-0 md:px-6`}>
+                  <div className="w-24 h-auto mb-4 overflow-hidden rounded-md shadow-md border border-slate-100">
+                    <img 
+                      src={`https://flagcdn.com/w160/${qmsData.qmsList[currentQmsIndex].countryCode}.png`}
+                      alt={`Flag of ${qmsData.qmsList[currentQmsIndex].country}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 text-center">
+                    {qmsData.qmsList[currentQmsIndex].country}
+                  </h3>
+                  <span className="text-sm font-bold text-slate-400 mt-2 bg-slate-100 px-3 py-1 rounded-full">
+                    {qmsData.qmsList[currentQmsIndex].code}
+                  </span>
+                </div>
+
+                {/* Détails QMS */}
+                <div className={`w-full md:w-2/3 ${textAlignClass}`}>
+                  <div className="mb-6">
+                    <span className="text-xs uppercase tracking-widest text-[#0F2982] font-bold block mb-1">
+                      {currentLang === 'AR' ? 'المعهد الوطني للقياس' : 'National Metrology Institute'}
+                    </span>
+                    <h4 className="text-2xl md:text-3xl font-black text-slate-800 leading-tight">
+                      {qmsData.qmsList[currentQmsIndex].institute}
+                    </h4>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                      <span className="block text-xs text-slate-500 font-medium mb-1">
+                        {currentLang === 'AR' ? 'المواصفة المطبقة' : 'Applied Standard'}
+                      </span>
+                      <span className="block text-lg font-bold text-green-600">
+                        {qmsData.qmsList[currentQmsIndex].standard}
+                      </span>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                      <span className="block text-xs text-slate-500 font-medium mb-1">
+                        {currentLang === 'AR' ? 'حالة النظام' : 'System Status'}
+                      </span>
+                      <span className="block text-lg font-bold text-blue-600">
+                        {qmsData.qmsList[currentQmsIndex].status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </motion.div>
+            </AnimatePresence>
+            
+            {/* Indicateurs (Dots) */}
+            <div className="flex justify-center gap-2 mt-8">
+              {qmsData.qmsList.map((_, idx) => (
+                <button 
+                  key={idx} 
+                  onClick={() => setCurrentQmsIndex(idx)} 
+                  className={`h-2 transition-all duration-300 rounded-full ${currentQmsIndex === idx ? 'w-8 bg-[#0F2982]' : 'w-2 bg-slate-300'}`} 
+                />
+              ))}
+            </div>
+          </div>
 
         </div>
       </section>
+
     </>
   );
 }
