@@ -59,7 +59,7 @@ function Footer({ currentLang: propLang, toggleLanguage }) {
     const arrow = t.arrow
 
     return (
-        <footer className="relative w-full bg-[#0f1a30] text-slate-300 font-['Cairo',_sans-serif] pt-[50px] md:pt-[80px]" dir={currentLang === 'AR' ? 'rtl' : 'ltr'}>
+        <footer className="relative w-full bg-[#0b1d5c] text-slate-300 font-['Cairo',_sans-serif] pt-[50px] md:pt-[80px]" dir={currentLang === 'AR' ? 'rtl' : 'ltr'}>
             
             {/* الأمواج العلوية */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-30 pointer-events-none rotate-180">
@@ -81,7 +81,7 @@ function Footer({ currentLang: propLang, toggleLanguage }) {
             </div>
 
             {/* شريط معلومات الاتصال */}
-            <div className="border-b border-slate-700/50 bg-[#0b1325]">
+            <div className="border-b border-slate-700/50 bg-[#0b1d5c]/80 text-xs text-slate-400 py-4 z-20 relative">
                 <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-right">
                     <div className="flex items-center justify-center md:justify-start gap-3">
                         <div className="p-2 bg-slate-800 rounded-lg text-white">
