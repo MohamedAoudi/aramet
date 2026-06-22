@@ -199,11 +199,9 @@ export default function Home() {
         { id: 3, name: "GULFMET", logo: logoGULFMET },
         { id: 4, name: "ARAC", logo: logoARAC },
         { id: 5, name: "BIPM", logo: logoBIPM },
-        { id: 6, name: "AIDSMO", logo: logoISO },
+        { id: 6, name: "ISO", logo: logoISO },
         { id: 7, name: "AFRIMETS", logo: logoAFRIMETS }
       ]
-
-
     },
     EN: {
       slides: [
@@ -385,7 +383,7 @@ export default function Home() {
         { id: 3, name: "GULFMET", logo: logoGULFMET },
         { id: 4, name: "ARAC", logo: logoARAC },
         { id: 5, name: "BIPM", logo: logoBIPM },
-        { id: 6, name: "AIDSMO", logo: logoISO },
+        { id: 6, name: "ISO", logo: logoISO },
         { id: 7, name: "AFRIMETS", logo: logoAFRIMETS }
       ]
     }
@@ -397,7 +395,7 @@ export default function Home() {
   const qmsData = translations[currentLang];
   const ilcData = translations[currentLang];
   
-  // تكرار القائمة مرتين فقط (لإنشاء حلقة متصلة رياضياً بنسبة 50%)
+  // تكرار القائمة مرتين فقط لإنشاء حلقة متصلة رياضياً
   const marqueePartners = [
     ...translations[currentLang].partnersList, 
     ...translations[currentLang].partnersList
@@ -481,7 +479,7 @@ export default function Home() {
                 <div key={slide.id} onClick={() => setCurrentIndex(index)} className={`relative overflow-hidden cursor-pointer transition-all duration-300 rounded-lg flex items-center p-2 lg:p-3 gap-3 shrink-0 w-[200px] md:w-full ${isActive ? 'bg-white/20 shadow-lg md:scale-105' : 'bg-black/20 opacity-60 hover:opacity-100'}`}>
                   <img src={slide.image} alt="thumbnail" className="w-12 h-12 object-cover bg-white rounded-md shrink-0 border border-white/10" />
                   <div className="flex-1 min-w-0">
-                    <span className="block text-xs lg:text-sm font-bold truncate text-white">{slide.title}</span>
+                    <span className="block text-sm lg:text-base font-bold truncate text-white">{slide.title}</span>
                   </div>
                   {isActive && <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 5, ease: "linear" }} className="absolute bottom-0 right-0 h-1 bg-white" />}
                 </div>
@@ -493,14 +491,14 @@ export default function Home() {
             <AnimatePresence mode="wait">
               <motion.div key={currentIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="container mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-center gap-8 w-full h-full max-w-6xl">
                 <div className={`w-full flex flex-col justify-center ${textOrderClasses} z-10 ${textAlignClass} transition-all duration-500 ${isWorldMetrologyDay ? 'lg:w-1/2' : 'lg:w-full max-w-3xl mx-auto'}`}>
-                  <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 drop-shadow-md">
+                  <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-3 drop-shadow-md">
                     {slides[currentIndex].title}
                   </motion.h1>
                   <motion.div initial={{ width: 0 }} animate={{ width: "4rem" }} transition={{ delay: 0.3, duration: 0.5 }} className="h-1 bg-white mb-5 rounded-full" />
-                  <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }} className="text-sm md:text-lg text-gray-200 mb-6 leading-relaxed drop-shadow">
+                  <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }} className="text-base md:text-xl text-gray-200 mb-6 leading-relaxed drop-shadow">
                     {slides[currentIndex].subtitle}
                   </motion.p>
-                  <motion.button initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white hover:bg-gray-100 text-[#0F2982] text-sm md:text-base font-bold py-2.5 px-6 rounded-full shadow-lg w-fit transition-colors">
+                  <motion.button initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white hover:bg-gray-100 text-[#0F2982] text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg w-fit transition-colors">
                     {slides[currentIndex].buttonText} {buttonArrow}
                   </motion.button>
                 </div>
@@ -520,8 +518,8 @@ export default function Home() {
         <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-5xl font-sans">
           <div className="flex flex-row justify-between items-end mb-10">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-1">ARAMET Agenda</span>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-900">{translations[currentLang].eventsTitle}</h2>
+              <span className="text-sm font-bold uppercase tracking-widest text-blue-600 block mb-1">ARAMET Agenda</span>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900">{translations[currentLang].eventsTitle}</h2>
             </div>
             <div className="flex gap-2 invisible sm:flex">
               <button onClick={prevEvent} className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-800 flex items-center justify-center hover:bg-[#0F2982] hover:text-white transition-all shadow-sm font-bold">{isRTL ? '→' : '←'}</button>
@@ -534,9 +532,9 @@ export default function Home() {
               <div className="absolute -right-10 -bottom-10 w-36 h-36 bg-white/5 rounded-full pointer-events-none" />
               <AnimatePresence mode="wait">
                 <motion.div key={currentEventIndex} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} transition={{ duration: 0.3 }} className="text-center">
-                  <span className="block text-5xl font-black mb-1">{events[currentEventIndex].day}</span>
-                  <span className="block text-base font-bold uppercase tracking-wide opacity-90">{events[currentEventIndex].month}</span>
-                  <span className="block text-xs opacity-60 mt-1">{events[currentEventIndex].year}</span>
+                  <span className="block text-6xl font-black mb-1">{events[currentEventIndex].day}</span>
+                  <span className="block text-lg font-bold uppercase tracking-wide opacity-90">{events[currentEventIndex].month}</span>
+                  <span className="block text-sm opacity-60 mt-1">{events[currentEventIndex].year}</span>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -545,11 +543,11 @@ export default function Home() {
               <AnimatePresence mode="wait">
                 <motion.div key={currentEventIndex} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className={`flex flex-col h-full justify-between ${textAlignClass}`}>
                   <div>
-                    <h3 className="text-lg md:text-xl font-extrabold text-slate-900 leading-snug mb-3">{events[currentEventIndex].title}</h3>
-                    <p className="text-slate-600 text-sm leading-relaxed max-w-2xl">{events[currentEventIndex].description}</p>
+                    <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 leading-snug mb-3">{events[currentEventIndex].title}</h3>
+                    <p className="text-slate-600 text-base leading-relaxed max-w-2xl">{events[currentEventIndex].description}</p>
                   </div>
                   <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <motion.button whileHover={{ x: isRTL ? -4 : 4 }} className="inline-flex items-center gap-2 font-bold text-[#0F2982] text-sm group">
+                    <motion.button whileHover={{ x: isRTL ? -4 : 4 }} className="inline-flex items-center gap-2 font-bold text-[#0F2982] text-base group">
                       <span className="underline underline-offset-4 decoration-2">{events[currentEventIndex].btnText}</span>
                       <span>{buttonArrow}</span>
                     </motion.button>
@@ -587,27 +585,27 @@ export default function Home() {
             </div>
 
             <div className={`col-span-1 lg:col-span-7 ${textAlignClass} ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}>
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block mb-4">
+              <span className="text-sm font-bold uppercase tracking-widest text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block mb-4">
                 Global Event 2026
               </span>
-              <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tight leading-tight">
+              <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight leading-tight">
                 {translations[currentLang].wmdTitle}
               </h2>
               
               <div className={`my-6 p-4 border-l-4 border-blue-500 bg-white/5 rounded-r-xl ${isRTL ? 'border-l-0 border-r-4 rounded-r-none rounded-l-xl text-right' : ''}`}>
-                <p className="text-xl md:text-2xl font-extrabold text-blue-300">
+                <p className="text-2xl md:text-3xl font-extrabold text-blue-300">
                   {translations[currentLang].wmdSlogan}
                 </p>
               </div>
 
-              <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-8">
+              <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8">
                 {translations[currentLang].wmdDesc}
               </p>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white hover:bg-gray-100 text-[#0F2982] text-sm md:text-base font-bold py-2.5 px-6 rounded-full shadow-lg w-fit transition-colors"
+                className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-blue-600/30 text-base transition-colors"
               >
                 {translations[currentLang].wmdBtn} {buttonArrow}
               </motion.button>
@@ -622,13 +620,13 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div className={textAlignClass}>
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-1">
+              <span className="text-sm font-bold uppercase tracking-widest text-blue-600 block mb-1">
                 ARAMET Newsroom
               </span>
-              <h2 className="text-2xl md:text-4xl font-black text-slate-900">
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900">
                 {translations[currentLang].newsTitle}
               </h2>
-              <p className="text-slate-500 text-sm mt-2 max-w-xl">
+              <p className="text-slate-500 text-base mt-2 max-w-xl">
                 {translations[currentLang].newsSubTitle}
               </p>
             </div>
@@ -636,7 +634,7 @@ export default function Home() {
             <motion.button 
               whileHover={{ scale: 1.03 }} 
               whileTap={{ scale: 0.98 }}
-              className="px-5 py-2.5 rounded-xl border-2 border-slate-200 hover:border-[#0F2982] text-[#0F2982] font-bold text-sm transition-all whitespace-nowrap"
+              className="px-5 py-2.5 rounded-xl border-2 border-slate-200 hover:border-[#0F2982] text-[#0F2982] font-bold text-base transition-all whitespace-nowrap"
             >
               {translations[currentLang].newsBtn}
             </motion.button>
@@ -655,26 +653,26 @@ export default function Home() {
                     alt={newsItem.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} bg-[#0F2982] text-white text-[11px] font-bold py-1 px-3 rounded-full shadow-md`}>
+                  <span className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} bg-[#0F2982] text-white text-xs font-bold py-1 px-3 rounded-full shadow-md`}>
                     {newsItem.tag}
                   </span>
                 </div>
 
                 <div className={`p-6 flex-1 flex flex-col justify-between ${textAlignClass}`}>
                   <div>
-                    <span className="text-xs text-slate-400 font-medium block mb-2">
+                    <span className="text-sm text-slate-400 font-medium block mb-2">
                       📅 {newsItem.date}
                     </span>
-                    <h3 className="text-base md:text-lg font-bold text-slate-900 leading-snug mb-3 hover:text-[#0F2982] transition-colors line-clamp-2">
+                    <h3 className="text-lg md:text-xl font-bold text-slate-900 leading-snug mb-3 hover:text-[#0F2982] transition-colors line-clamp-2">
                       {newsItem.title}
                     </h3>
-                    <p className="text-slate-500 text-xs md:text-sm leading-relaxed line-clamp-4">
+                    <p className="text-slate-500 text-sm md:text-base leading-relaxed line-clamp-4">
                       {newsItem.desc}
                     </p>
                   </div>
 
                   <div className="mt-5 pt-4 border-t border-slate-50">
-                    <button className="text-xs font-bold text-[#0F2982] hover:underline inline-flex items-center gap-1">
+                    <button className="text-sm font-bold text-[#0F2982] hover:underline inline-flex items-center gap-1">
                       {currentLang === 'AR' ? 'اقرأ المزيد' : 'Read full story'} {buttonArrow}
                     </button>
                   </div>
@@ -694,8 +692,8 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
             <div className={`w-full md:w-2/3 ${textAlignClass}`}>
-              <h2 className="text-3xl font-black text-[#0F2982] mb-2">{qmsData.qmsSectionTitle}</h2>
-              <p className="text-slate-600 font-medium">{qmsData.qmsSectionSub}</p>
+              <h2 className="text-4xl font-black text-[#0F2982] mb-2">{qmsData.qmsSectionTitle}</h2>
+              <p className="text-slate-600 font-medium text-base md:text-lg">{qmsData.qmsSectionSub}</p>
             </div>
             
             <div className="flex gap-3">
@@ -728,10 +726,10 @@ export default function Home() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 text-center">
+                  <h3 className="text-2xl font-bold text-slate-900 text-center">
                     {qmsData.qmsList[currentQmsIndex].country}
                   </h3>
-                  <span className="text-sm font-bold text-slate-400 mt-2 bg-slate-100 px-3 py-1 rounded-full">
+                  <span className="text-base font-bold text-slate-400 mt-2 bg-slate-100 px-3 py-1 rounded-full">
                     {qmsData.qmsList[currentQmsIndex].code}
                   </span>
                 </div>
@@ -739,28 +737,28 @@ export default function Home() {
                 {/* Détails QMS */}
                 <div className={`w-full md:w-2/3 ${textAlignClass}`}>
                   <div className="mb-6">
-                    <span className="text-xs uppercase tracking-widest text-[#0F2982] font-bold block mb-1">
+                    <span className="text-sm uppercase tracking-widest text-[#0F2982] font-bold block mb-1">
                       {currentLang === 'AR' ? 'المعهد الوطني للقياس' : 'National Metrology Institute'}
                     </span>
-                    <h4 className="text-2xl md:text-3xl font-black text-slate-800 leading-tight">
+                    <h4 className="text-3xl md:text-4xl font-black text-slate-800 leading-tight">
                       {qmsData.qmsList[currentQmsIndex].institute}
                     </h4>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                      <span className="block text-xs text-slate-500 font-medium mb-1">
+                      <span className="block text-sm text-slate-500 font-medium mb-1">
                         {currentLang === 'AR' ? 'المواصفة المطبقة' : 'Applied Standard'}
                       </span>
-                      <span className="block text-lg font-bold text-green-600">
+                      <span className="block text-xl font-bold text-green-600">
                         {qmsData.qmsList[currentQmsIndex].standard}
                       </span>
                     </div>
                     <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                      <span className="block text-xs text-slate-500 font-medium mb-1">
+                      <span className="block text-sm text-slate-500 font-medium mb-1">
                         {currentLang === 'AR' ? 'حالة النظام' : 'System Status'}
                       </span>
-                      <span className="block text-lg font-bold text-blue-600">
+                      <span className="block text-xl font-bold text-blue-600">
                         {qmsData.qmsList[currentQmsIndex].status}
                       </span>
                     </div>
@@ -791,11 +789,11 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className={`w-full md:w-2/3 ${textAlignClass}`}>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#0F2982] block mb-2">
+              <span className="text-sm font-bold uppercase tracking-widest text-[#0F2982] block mb-2">
                 ARAMET ILC Programs
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2">{ilcData.ilcSectionTitle}</h2>
-              <p className="text-slate-500 text-sm md:text-base max-w-2xl">{ilcData.ilcSectionSub}</p>
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-2">{ilcData.ilcSectionTitle}</h2>
+              <p className="text-slate-500 text-base md:text-lg max-w-2xl">{ilcData.ilcSectionSub}</p>
             </div>
             
             <div className="flex gap-3">
@@ -827,16 +825,16 @@ export default function Home() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight font-mono">
+                      <h3 className="text-3xl font-black text-slate-900 tracking-tight font-mono">
                         {ilcData.ilcList[currentIlcIndex].code}
                       </h3>
-                      <span className="text-sm font-bold text-slate-400">
+                      <span className="text-base font-bold text-slate-400">
                         {ilcData.ilcList[currentIlcIndex].area}
                       </span>
                     </div>
                   </div>
                   
-                  <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold shadow-sm border border-white/20 ${ilcData.ilcList[currentIlcIndex].statusColor}`}>
+                  <span className={`inline-flex items-center px-4 py-2 rounded-full text-base font-bold shadow-sm border border-white/20 ${ilcData.ilcList[currentIlcIndex].statusColor}`}>
                     <span className="w-2.5 h-2.5 rounded-full bg-current mr-2 rtl:ml-2 rtl:mr-0 animate-pulse"></span>
                     {ilcData.ilcList[currentIlcIndex].status}
                   </span>
@@ -848,28 +846,28 @@ export default function Home() {
                   {/* Info Points */}
                   <div className={`flex flex-col gap-5 ${textAlignClass}`}>
                     <div>
-                      <span className="block text-xs font-bold text-slate-400 uppercase mb-1">
+                      <span className="block text-sm font-bold text-slate-400 uppercase mb-1">
                         {ilcData.ilcLabels.type}
                       </span>
-                      <span className="text-base font-bold text-slate-800">
+                      <span className="text-lg font-bold text-slate-800">
                         {ilcData.ilcList[currentIlcIndex].type}
                       </span>
                     </div>
                     
                     <div>
-                      <span className="block text-xs font-bold text-slate-400 uppercase mb-1">
+                      <span className="block text-sm font-bold text-slate-400 uppercase mb-1">
                         {ilcData.ilcLabels.stage}
                       </span>
-                      <span className="text-base font-bold text-slate-800">
+                      <span className="text-lg font-bold text-slate-800">
                         {ilcData.ilcList[currentIlcIndex].stage}
                       </span>
                     </div>
 
                     <div>
-                      <span className="block text-xs font-bold text-slate-400 uppercase mb-1">
+                      <span className="block text-sm font-bold text-slate-400 uppercase mb-1">
                         {ilcData.ilcLabels.pilot}
                       </span>
-                      <span className="inline-block bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-700">
+                      <span className="inline-block bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg text-base font-bold text-slate-700">
                         {ilcData.ilcList[currentIlcIndex].pilot}
                       </span>
                     </div>
@@ -877,11 +875,11 @@ export default function Home() {
 
                   {/* Sub Fields */}
                   <div className={`flex flex-col ${textAlignClass}`}>
-                    <span className="block text-xs font-bold text-slate-400 uppercase mb-2">
+                    <span className="block text-sm font-bold text-slate-400 uppercase mb-2">
                       {ilcData.ilcLabels.subFields}
                     </span>
                     <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 h-full">
-                      <p className="text-sm font-medium text-slate-600 leading-relaxed break-words">
+                      <p className="text-base font-medium text-slate-600 leading-relaxed break-words">
                         {ilcData.ilcList[currentIlcIndex].subFields}
                       </p>
                     </div>
@@ -891,7 +889,7 @@ export default function Home() {
 
                 {/* Card Action */}
                 <div className={`mt-8 pt-6 border-t border-slate-100 flex ${isRTL ? 'justify-end' : 'justify-end'}`}>
-                  <button className="text-sm font-bold text-[#0F2982] hover:text-blue-600 transition-colors flex items-center gap-2 group">
+                  <button className="text-base font-bold text-[#0F2982] hover:text-blue-600 transition-colors flex items-center gap-2 group">
                     <span className="underline underline-offset-4 decoration-2">{ilcData.ilcLabels.details}</span>
                     <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{buttonArrow}</span>
                   </button>
@@ -918,8 +916,8 @@ export default function Home() {
       {/* SECTION : PARTNERS (المنظمات الشريكة بألوانها الأصلية وخلفية بيضاء - حلقة متصلة) */}
       <section className="w-full bg-white py-16 border-t border-slate-200 overflow-hidden">
         <div dir={isRTL ? 'rtl' : 'ltr'} className="container mx-auto px-6 max-w-6xl font-sans mb-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-black text-[#0F2982] mb-3">{translations[currentLang].partnersTitle}</h2>
-          <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">{translations[currentLang].partnersSub}</p>
+          <h2 className="text-3xl md:text-4xl font-black text-[#0F2982] mb-3">{translations[currentLang].partnersTitle}</h2>
+          <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto">{translations[currentLang].partnersSub}</p>
         </div>
         
         {/* شريط الصور المتحرك لا نهائياً (Marquee) - بإعدادات مسافات دقيقة للحصول على Perfect Loop */}
@@ -939,6 +937,10 @@ export default function Home() {
             animate={{ x: isRTL ? ["0%", "50%"] : ["0%", "-50%"] }}
             transition={{ ease: "linear", duration: 30, repeat: Infinity }}
           >
+            {/* تكرار المصفوفة مرتين يعطي 14 عنصراً. 
+              نحتاج للتأكد من إضافة نفس الـ gap في العنصر الأخير قبل التكرار التالي 
+              في CSS Grid/Flex الـ gap يُطبق بين العناصر فقط، لذا نضيف margin-right/left وهمي للعنصر الأخير أو نعتمد على حركة الـ 50% الدقيقة.
+            */}
             {marqueePartners.map((partner, index) => (
               <div 
                 key={index} 
@@ -948,7 +950,10 @@ export default function Home() {
                   src={partner.logo} 
                   alt={partner.name} 
                   className="max-w-full h-full object-contain" 
-                  
+                  onError={(e) => {
+                    // Fallback في حال حدوث أي خطأ في جلب الروابط الأصلية للموقع
+                    e.target.src = `https://via.placeholder.com/200x80/ffffff/0F2982?text=${partner.name}`;
+                  }}
                 />
               </div>
             ))}

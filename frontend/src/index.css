@@ -1,4 +1,8 @@
 @import "tailwindcss";
+*{
+    /* FONT-FAMILY: 'hme3', 'Lato', sans-serif; */
+    FONT-FAMILY: 'Cairo',_sans-serif;
+}
 main {
  padding: 0;
 }
