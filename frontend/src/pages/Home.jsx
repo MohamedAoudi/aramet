@@ -921,7 +921,7 @@ export default function Home() {
         </div>
         
         {/* شريط الصور المتحرك لا نهائياً (Marquee) - بإعدادات مسافات دقيقة للحصول على Perfect Loop */}
-        <div className="relative w-full flex overflow-hidden group">
+        <div className="relative w-full flex overflow-hidden group marquee">
           {/* تأثير التدرج (Fade) على جانبي الشريط (متوافق مع الخلفية البيضاء) */}
           <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
@@ -932,10 +932,10 @@ export default function Home() {
             3. أضفنا Padding في النهاية يماثل تماماً حجم الـ gap (pr-16 أو pl-16).
             4. قمنا بتحريك الـ x بنسبة 50% (أي إزاحة المجموعة الأولى بالكامل).
           */}
-          <motion.div
-            className={`flex items-center gap-16 md:gap-24 w-max py-4 ${isRTL ? 'pl-16 md:pl-24' : 'pr-16 md:pr-24'}`}
-            animate={{ x: isRTL ? ["0%", "50%"] : ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+          <div
+            className={`marquee__inner flex items-center gap-16 md:gap-24 w-max py-4 ${isRTL ? 'pl-16 md:pl-24' : 'pr-16 md:pr-24'}`}
+            aria-hidden="true"
+            style={{ animationDuration: '30s' }}
           >
             {/* تكرار المصفوفة مرتين يعطي 14 عنصراً. 
               نحتاج للتأكد من إضافة نفس الـ gap في العنصر الأخير قبل التكرار التالي 
@@ -944,7 +944,7 @@ export default function Home() {
             {marqueePartners.map((partner, index) => (
               <div 
                 key={index} 
-                className="w-32 md:w-44 h-24 shrink-0 flex items-center justify-center hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="w-32 md:w-44 h-24 shrink-0 flex items-center justify-center hover:scale-105 transition-transform duration-300 cursor-pointer marquee-item"
               >
                 <img 
                   src={partner.logo} 
@@ -957,7 +957,7 @@ export default function Home() {
                 />
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 

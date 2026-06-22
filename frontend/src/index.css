@@ -6,3 +6,18 @@
 main {
  padding: 0;
 }
+
+/* Continuous marquee for partners logos */
+.marquee { overflow: hidden; }
+.marquee__inner { display: flex; align-items: center; gap: 4rem; width: max-content; will-change: transform; animation-name: marquee; animation-timing-function: linear; animation-iteration-count: infinite; }
+.marquee-item { flex: 0 0 auto; }
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Reduce gap on small screens to keep layout tight */
+@media (max-width: 640px) {
+    .marquee__inner { gap: 2rem; }
+}
