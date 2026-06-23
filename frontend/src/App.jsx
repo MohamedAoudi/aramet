@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Menu from './layouts/Menu.jsx'
 import Home from './pages/Home.jsx'
+import News from './pages/News.jsx'
 import Contact from './Contact.jsx'
 import Footer from './layouts/Footer.jsx'
 
@@ -12,6 +13,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
